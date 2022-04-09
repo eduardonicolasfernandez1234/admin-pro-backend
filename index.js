@@ -14,13 +14,12 @@ app.use(cors())
 // Base de datos
 dbConnection();
 
+// Lectura y parseo de los datos
+app.use( express.json() );
+
 // Rutas
-app.get("/", (req, res) => {
-  res.json({
-    data: "sucess",
-    msg: "Hola mundo",
-  });
-});
+app.use('/api/usuarios', require('./routes/usuarios.route'));
+app.use('/api/login', require('./routes/auth.route'));
 
 app.listen(process.env.PORT, () => {
   console.log("Servidor corriendo en el puerto 3000 -> ", 3000);
